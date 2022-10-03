@@ -11,7 +11,7 @@ function Register() {
   useEffect(() => {
     setValues({ name: 'Виталий', email: 'pochta@yandex.ru', password: '111111111111111' });
     resetForm({}, {}, false);
-  }, [resetForm]);
+  }, [resetForm, setValues]);
   return (
     <section className="register">
       <div className="register__container">

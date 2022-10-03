@@ -10,7 +10,7 @@ function Profile() {
   useEffect(() => {
     setValues({ name: 'Виталий', email: 'pochta@yandex.ru' });
     resetForm({}, {}, false);
-  }, [resetForm]);
+  }, [resetForm, setValues]);
   return (
     <section className="profile">
       <h2 className="profile__title">

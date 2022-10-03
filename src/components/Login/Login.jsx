@@ -11,7 +11,7 @@ function Login() {
   useEffect(() => {
     setValues({ email: 'pochta@yandex.ru' });
     resetForm({}, {}, false);
-  }, [resetForm]);
+  }, [resetForm, setValues]);
   return (
     <section className="login">
       <div className="login__container">
