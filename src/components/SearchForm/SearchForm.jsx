@@ -8,7 +8,7 @@ function SearchForm() {
       <div className="search__container">
         <form className="search__form">
           <input className="search__input" type="text" name="search" placeholder="Фильм" required />
-          <button className="search__button" type="button" aria-label="Найти">Найти</button>
+          <button className="search__button" type="submit" aria-label="Найти">Найти</button>
         </form>
         <Checkbox />
       </div>
