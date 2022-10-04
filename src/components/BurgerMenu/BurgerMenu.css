@@ -3,23 +3,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 520px;
+    width: 67.7%;
     height: 100vh;
     visibility: hidden;
     position: fixed;
     overflow: hidden;
     top: 0;
-    right: -520px;
+    right: 0;
     background-color: #202020;
     margin: 0;
     padding: 0;
-    transition: transform 0.5s;
+    transform: translateX(100%);
+    transition: 0.5s ease-out;
     z-index: 5;
 }
 
 .burger-menu__active {
     visibility: visible;
-    transform: translateX(-100%);
+    transform: translateX(0);
 }
 
 .burger-menu__hidden {
@@ -121,7 +122,7 @@
 @media screen and (max-width: 520px) {
     .burger-menu {
         width: 320px;
-        right: -320px;
+        right: 0;
     }
 }
 
