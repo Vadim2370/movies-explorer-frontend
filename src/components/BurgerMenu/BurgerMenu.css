@@ -1,0 +1,137 @@
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 520px;
+    height: 100vh;
+    visibility: hidden;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: -520px;
+    background-color: #202020;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.5s;
+    z-index: 5;
+}
+
+.burger-menu__active {
+    visibility: visible;
+    transform: translateX(-100%);
+}
+
+.burger-menu__hidden {
+    display: none;
+}
+
+.burger-menu__visible {
+    display: none;
+    width: 44px;
+    height: 44px;
+    background-image: url(../../images/burger.svg);
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: opacity ease 0.4s;
+}
+
+.burger-menu__visible:hover {
+    opacity: 0.6;
+}
+
+.burger-menu__close {
+    position: absolute;
+    max-width: 31px;
+    height: 31px;
+    width: 100%;
+    top: 23px;
+    right: 22px;
+    background-image: url(../../images/close.svg);
+    border: none;
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: opacity ease 0.4s;
+}
+
+.burger-menu__close:hover {
+    opacity: 0.6;
+}
+
+.burger-menu__links {
+    display: flex;
+    flex-direction: column;
+    padding: 159px 0 0 0;
+}
+
+.burger-menu__link {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto 25px;
+    padding: 0 0 2px 0;
+}
+
+.burger-menu__link:first-child {
+    padding: 0 0 4px 0;
+}
+
+.burger-menu__link_active {
+    border-bottom: 2px solid #FFFFFF;
+    margin: 0 auto 23px;
+}
+
+.burger-menu__footer {
+    display: flex;
+    align-items: center;
+}
+
+.burger-menu__account {
+    display: flex;
+    font-size: 14px;
+    line-height: 32px;
+    font-weight: 500;
+    background-color: #313131;
+    width: 100px;
+    justify-content: center;
+    border: none;
+    border-radius: 20px;
+    margin: 0 0 90px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .burger-menu__visible {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .burger-menu {
+        width: 320px;
+        right: -320px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .burger-menu__visible {
+        width: 40px;
+        height: 40px;
+    }
+
+    .burger-menu__account {
+        margin: 0 0 46px 0;
+    }
+}

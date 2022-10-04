@@ -1,0 +1,144 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    max-width: 410px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 74px 0 70px 0;
+}
+
+.profile__title {
+    font-size: 24px;
+    line-height: 29px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.profile__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 124px 0 0 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.profile__fields {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile__field {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+.profile__field:first-of-type {
+    padding: 0 0 16px 0;
+    border-bottom: 1px solid #424242;
+}
+
+.profile__field:last-of-type {
+    padding: 17px 0 0 0;
+}
+
+.profile__label {
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.profile__input {
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 400;
+    text-align: right;
+    color: #FFFFFF;
+    min-width: 200px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.profile__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 220px 0 0 0;
+}
+
+.profile__button {
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+}
+
+.profile__button_edit {
+    font-weight: 400;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.profile__button_logout {
+    font-weight: 500;
+    color: #EE3465;
+    text-decoration: none;
+}
+
+.error__name {
+    margin: 30px 0 0 0;
+}
+
+.error__email {
+    margin: 18px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+    .profile {
+        padding: 251px 0 70px 0;
+    }
+
+    .profile__form {
+        padding: 97px 0 0 0;
+    }
+
+    .profile__nav {
+        padding: 210px 0 269px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile {
+        padding: 85px 0 0 0;
+    }
+
+    .profile__form {
+        padding: 81px 0 0 0;
+    }
+    
+    .profile__fields {
+        padding: 0 30px;
+    }
+
+    .profile__button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .profile__nav {
+        padding: 379px 0 40px 0;
+    }
+}

@@ -1,0 +1,16 @@
+.space {
+    margin: 89px 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 910px) {
+    .space {
+        margin: 123px 0;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .space {
+        margin: 145px 0;
+    }
+}
