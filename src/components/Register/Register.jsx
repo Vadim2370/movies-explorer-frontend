@@ -1,17 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
 import Logo from '../Logo/Logo';
 import useValidationForm from '../../hooks/useValidationForm';
 
-function Register() {
+function Register({ onRegister, message }) {
   const {
-    values, errors, setValues, handleChange, resetForm,
+    values, errors, handleChange, resetForm, isValid, setIsValid,
   } = useValidationForm();
+  const [isMessage, setIsMessage] = useState(false);
   useEffect(() => {
-    setValues({ name: 'Виталий', email: 'pochta@yandex.ru', password: '111111111111111' });
-    resetForm({}, {}, false);
-  }, [resetForm, setValues]);
+    setIsValid(false);
+    resetForm();
+  }, [resetForm, setIsValid]);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onRegister(values);
+    setIsMessage(true);
+  }
+
   return (
     <section className="register">
       <div className="register__container">
@@ -19,7 +27,7 @@ function Register() {
           <Logo />
         </div>
         <h2 className="register__title">Добро пожаловать!</h2>
-        <form className="register__form" name="register-form" action="/signin">
+        <form className="register__form" name="register-form" onSubmit={handleSubmit}>
           <div className="register__field">
             <label htmlFor="name">
               <span className="register__label">Имя</span>
@@ -46,6 +54,7 @@ function Register() {
                 name="email"
                 placeholder="E-mail"
                 maxLength="40"
+                pattern="^\S+@\S+\.\S+$"
                 value={values.email ?? ''}
                 onChange={handleChange}
                 autoComplete="off"
@@ -67,10 +76,11 @@ function Register() {
                 required
               />
               <span className="error">{errors.password}</span>
+              <span className={isMessage ? 'error__reg' : ''}>{message}</span>
             </label>
           </div>
           <div className="register__nav">
-            <button className="register__button" type="submit">Зарегистрироваться</button>
+            <button className={`login__button ${!isValid && 'login__button_disabled'}`} type="submit" disabled={!isValid}>Зарегистрироваться</button>
             <Link className="link register__link" to="/signin">
               Уже зарегистрированы?
               <span className="register__login">Войти</span>

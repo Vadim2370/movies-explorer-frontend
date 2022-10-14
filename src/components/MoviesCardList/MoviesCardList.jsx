@@ -2,16 +2,21 @@ import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList({ movies, hideLike }) {
+function MoviesCardList({
+  movies, savedMoviesList, onSave, onDelete, isSaved,
+}) {
   return (
     <section className="movies">
       <ul className="movies__list">
         {
-                    movies.map((data) => (
+                    movies.map((moviesCard) => (
                       <MoviesCard
-                        key={data.name}
-                        {...data}
-                        hideLike={hideLike}
+                        key={moviesCard.id || moviesCard.movieId}
+                        moviesCard={moviesCard}
+                        savedMoviesList={savedMoviesList}
+                        onSave={onSave}
+                        onDelete={onDelete}
+                        isSaved={isSaved}
                       />
                     ))
                 }

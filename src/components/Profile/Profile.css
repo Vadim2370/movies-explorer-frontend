@@ -66,8 +66,13 @@
     min-width: 200px;
     border: none;
     outline: none;
+    border-bottom: 1px solid #202020;
     background-color: transparent;
     padding: 0;
+}
+
+.profile__input:focus {
+    border-bottom: solid 1px #4285F4;
 }
 
 .profile__nav {
@@ -84,12 +89,26 @@
     text-align: center;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+    transition: opacity ease 0.4s;
+}
+
+.profile__button:hover {
+    opacity: 0.6;
 }
 
 .profile__button_edit {
     font-weight: 400;
     color: #FFFFFF;
-    cursor: pointer;
+}
+
+.profile__button_edit-disabled{
+    color: #8B8B8B;
+    cursor: default;
+}
+
+.profile__button_edit-disabled:hover {
+    opacity: 1;
 }
 
 .profile__button_logout {
@@ -104,6 +123,13 @@
 
 .error__email {
     margin: 18px 0 0 0;
+}
+
+.error__profile {
+    position: absolute;
+    font-size: 13px;
+    line-height: 16px;
+    color: #EE3465;
 }
 
 @media screen and (max-width: 768px) {
