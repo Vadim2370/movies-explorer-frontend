@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
 import LikeBtn from '../LikeBtn/LikeBtn';
+import { getTime } from '../../utils/utils';
 import './MoviesCard.css';
 
 function MoviesCard({
@@ -8,11 +9,7 @@ function MoviesCard({
 }) {
   const location = useLocation();
   const isSaved = moviesCard.id && savedMoviesList.some((m) => m.movieId === moviesCard.id);
-  function getTime(min) {
-    const hours = Math.trunc(min / 60);
-    const minutes = min % 60;
-    return `${hours}ч${minutes}м`;
-  }
+  
   const handleClickMovie = () => {
     if (isSaved) {
       onDelete(

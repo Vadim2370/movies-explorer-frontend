@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import {
-  Route, Routes, Navigate, useNavigate,
+  Route, Routes, Navigate, useNavigate, useLocation,
 } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
@@ -24,20 +24,13 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isMessage, setIsMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     handleCheckToken();
     if (loggedIn) {
       handleGetUser();
       getSavedMovies();
-    }
-  }, [loggedIn]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      navigate('/movies');
-    } else {
-      navigate('/');
     }
   }, [loggedIn]);
 
@@ -54,21 +47,37 @@ function App() {
   }
 
   function handleCheckToken() {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
       MainApi
-        .getUser(jwt)
+        .getUser()
         .then((res) => {
           if (res) {
             setLoggedIn(true);
+            navigate(location.pathname);
           }
         })
         .catch((err) => {
           console.log(`Ошибка токена: ${err}`);
           setLoggedIn(false);
+          localStorage.clear();
         });
-    }
   }
+
+  // function handleCheckToken() {
+  //   const jwt = localStorage.getItem('jwt');
+  //   if (jwt) {
+  //     MainApi
+  //       .getUser(jwt)
+  //       .then((res) => {
+  //         if (res) {
+  //           setLoggedIn(true);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(`Ошибка токена: ${err}`);
+  //         setLoggedIn(false);
+  //       });
+  //   }
+  // }
 
   const handleLogin = (email, password) => {
     MainApi

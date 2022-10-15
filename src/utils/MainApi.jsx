@@ -1,4 +1,4 @@
-import { BASE_URL } from './constApi';
+import { BASE_URL } from './constans';
 
 function checkResponse(res) {
   if (res.ok) {

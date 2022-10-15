@@ -7,7 +7,9 @@ import './Movies.css';
 import {
   optmMovies,
   setShortMovies,
-  filterSearchMovies,
+  filterSearchMovies
+} from '../../utils/utils';
+import {
   LAPTOP_W,
   TABLET_W,
   MOBILE_W,
@@ -18,7 +20,7 @@ import {
   LAPTOP_MAX_ADD,
   LAPTOP_ADD,
   TAB_MOB_ADD,
-} from '../../utils/utils';
+} from '../../utils/constans';
 
 function Movies({ savedMoviesList, onSave, onDelete }) {
   const [initialMovies, setInitialMovies] = useState([]);

@@ -1,4 +1,4 @@
-import { MOVIES_URL } from './constApi';
+import { MOVIES_URL } from './constans';
 
 function checkResponse(res) {
   if (res.ok) {
