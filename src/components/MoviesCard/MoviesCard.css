@@ -1,5 +1,6 @@
 .movie {
     display: flex;
+    width: 270px;
     list-style: none;
     flex-direction: column;
     background-color: #222222;
@@ -90,6 +91,10 @@
 }
 
 @media screen and (max-width: 910px) {
+    .movie {
+        width: 339px;
+    }
+
     .movie__image {
         height: 190px;
     }
@@ -100,6 +105,10 @@
 }
 
 @media screen and (max-width: 440px) {
+    .movie {
+        width: 300px;
+    }
+    
     .movie__image {
         height: 168px;
     }

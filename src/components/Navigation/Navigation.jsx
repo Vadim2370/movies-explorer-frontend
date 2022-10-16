@@ -14,11 +14,17 @@ function Navigation() {
     setIsBurgerMenuOpen(false);
   };
 
+  const closeOverlay = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closeBurgerMenu();
+    }
+  };
+
   return (
     <section className="navigation">
       <div className="navigation__menu">
         <div className="navigation__burger">
-          {isBurgerMenuOpen && <div className="navigation__bg" />}
+          {isBurgerMenuOpen && <div className="navigation__bg" onClick={closeOverlay} />}
           <Logo />
           <BurgerMenu
             isOpen={isBurgerMenuOpen}

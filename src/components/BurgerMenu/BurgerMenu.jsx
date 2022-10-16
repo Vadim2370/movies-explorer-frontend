@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './BurgerMenu.css';
 
@@ -6,6 +6,17 @@ function BurgerMenu({ onClick, isOpen, onClose }) {
   const burgerButton = `burger-menu__visible ${isOpen ? 'burger-menu__hidden' : 'burger-menu__visible'}`;
   const burgerActive = `burger-menu ${isOpen ? 'burger-menu__active' : ''}`;
   const styleActive = ({ isActive }) => `link burger-menu__link ${isActive ? 'burger-menu__link_active' : ''}`;
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        onClose();
+        document.removeEventListener('keydown', closeEscape);
+      }
+    };
+    document.addEventListener('keydown', closeEscape);
+  }, [isOpen, onClose]);
 
   return (
     <>

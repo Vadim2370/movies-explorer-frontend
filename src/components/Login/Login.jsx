@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import Logo from '../Logo/Logo';
 import useValidationForm from '../../hooks/useValidationForm';
 
-function Login() {
+function Login({ onLogin, message, isLoading }) {
   const {
-    values, errors, setValues, handleChange, resetForm,
+    values, errors, handleChange, resetForm, isValid, setIsValid,
   } = useValidationForm();
+  const [isMessage, setIsMessage] = useState(false);
+  const buttonTitle="Войти";
+  const buttonLoadingTitle="Входим...";
   useEffect(() => {
-    setValues({ email: 'pochta@yandex.ru' });
-    resetForm({}, {}, false);
-  }, [resetForm, setValues]);
+    setIsValid(false);
+    resetForm();
+  }, [resetForm, setIsValid]);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onLogin(values);
+    setIsMessage(true);
+  }
+
   return (
     <section className="login">
       <div className="login__container">
@@ -19,7 +29,7 @@ function Login() {
           <Logo />
         </div>
         <h2 className="login__title">Рады видеть!</h2>
-        <form className="login__form" name="login-form" action="/movies">
+        <form className="login__form" name="login-form" onSubmit={handleSubmit}>
           <div className="login__field">
             <label htmlFor="email">
               <span className="login__label">E-mail</span>
@@ -29,6 +39,7 @@ function Login() {
                 name="email"
                 placeholder="E-mail"
                 maxLength="40"
+                pattern="^\S+@\S+\.\S+$"
                 value={values.email ?? ''}
                 onChange={handleChange}
                 autoComplete="off"
@@ -50,10 +61,11 @@ function Login() {
                 required
               />
               <span className="error">{errors.password}</span>
+              <span className={isMessage ? 'error__login' : ''}>{message}</span>
             </label>
           </div>
           <div className="login__nav">
-            <button className="login__button" type="submit">Войти</button>
+            <button className={`login__button ${(!isValid || isLoading) && 'login__button_disabled'}`} type="submit" disabled={!isValid || isLoading}>{isLoading ? buttonLoadingTitle : buttonTitle}</button>
             <Link className="link login__link" to="/signup">
               Ещё не зарегистрированы?
               <span className="login__register">Регистрация</span>
