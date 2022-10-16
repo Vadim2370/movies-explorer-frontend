@@ -4,11 +4,13 @@ import './Register.css';
 import Logo from '../Logo/Logo';
 import useValidationForm from '../../hooks/useValidationForm';
 
-function Register({ onRegister, message }) {
+function Register({ onRegister, message, isLoading }) {
   const {
     values, errors, handleChange, resetForm, isValid, setIsValid,
   } = useValidationForm();
   const [isMessage, setIsMessage] = useState(false);
+  const buttonTitle="Зарегистрироваться";
+  const buttonLoadingTitle="Регистрация...";
   useEffect(() => {
     setIsValid(false);
     resetForm();
@@ -80,7 +82,7 @@ function Register({ onRegister, message }) {
             </label>
           </div>
           <div className="register__nav">
-            <button className={`login__button ${!isValid && 'login__button_disabled'}`} type="submit" disabled={!isValid}>Зарегистрироваться</button>
+            <button className={`login__button ${(!isValid || isLoading) && 'login__button_disabled'}`} type="submit" disabled={!isValid || isLoading}>{isLoading ? buttonLoadingTitle : buttonTitle}</button>
             <Link className="link register__link" to="/signin">
               Уже зарегистрированы?
               <span className="register__login">Войти</span>

@@ -1,7 +1,8 @@
 import { OPTM_IMG, MOV_URL } from "./constans";
+import { SHORT_DURATION } from "./constans";
 
 export function setShortMovies(movies) {
-  return movies.filter((item) => item.duration < 40);
+  return movies.filter((item) => item.duration < SHORT_DURATION);
 }
 
 export function filterSearchMovies(movies, keyWord, checkBoxStatus) {

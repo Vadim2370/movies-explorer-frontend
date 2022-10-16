@@ -4,11 +4,13 @@ import './Login.css';
 import Logo from '../Logo/Logo';
 import useValidationForm from '../../hooks/useValidationForm';
 
-function Login({ onLogin, message }) {
+function Login({ onLogin, message, isLoading }) {
   const {
     values, errors, handleChange, resetForm, isValid, setIsValid,
   } = useValidationForm();
   const [isMessage, setIsMessage] = useState(false);
+  const buttonTitle="Войти";
+  const buttonLoadingTitle="Входим...";
   useEffect(() => {
     setIsValid(false);
     resetForm();
@@ -63,7 +65,7 @@ function Login({ onLogin, message }) {
             </label>
           </div>
           <div className="login__nav">
-            <button className={`login__button ${!isValid && 'login__button_disabled'}`} type="submit" disabled={!isValid}>Войти</button>
+            <button className={`login__button ${(!isValid || isLoading) && 'login__button_disabled'}`} type="submit" disabled={!isValid || isLoading}>{isLoading ? buttonLoadingTitle : buttonTitle}</button>
             <Link className="link login__link" to="/signup">
               Ещё не зарегистрированы?
               <span className="login__register">Регистрация</span>

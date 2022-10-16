@@ -23,6 +23,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isMessage, setIsMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -62,24 +63,8 @@ function App() {
         });
   }
 
-  // function handleCheckToken() {
-  //   const jwt = localStorage.getItem('jwt');
-  //   if (jwt) {
-  //     MainApi
-  //       .getUser(jwt)
-  //       .then((res) => {
-  //         if (res) {
-  //           setLoggedIn(true);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(`Ошибка токена: ${err}`);
-  //         setLoggedIn(false);
-  //       });
-  //   }
-  // }
-
   const handleLogin = (email, password) => {
+    setIsLoading(true);
     MainApi
       .login(email, password)
       .then((res) => {
@@ -92,10 +77,12 @@ function App() {
       .catch((err) => {
         setIsMessage('Ошибка авторизации');
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleRegister = (userData) => {
+    setIsLoading(true);
     MainApi
       .createUser(userData)
       .then(() => {
@@ -105,7 +92,8 @@ function App() {
       .catch((err) => {
         setIsMessage('Ошибка регистрации');
         console.log(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleLogOut = () => {
@@ -261,6 +249,7 @@ function App() {
                   <Register
                     onRegister={handleRegister}
                     message={isMessage}
+                    isLoading={isLoading}
                   />
                 )
             }
@@ -274,6 +263,7 @@ function App() {
                   <Login
                     onLogin={handleLogin}
                     message={isMessage}
+                    isLoading={isLoading}
                   />
                 )
           }
